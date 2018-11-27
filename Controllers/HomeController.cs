@@ -9,8 +9,6 @@ namespace Session.Controllers
 {
     public class HomeController : Controller
     {
-        //HttpContext.Session.SetInt32("Count", 0);
-        // GET: /Home/
         [HttpGet]
         [Route("")]
         public IActionResult Index()
@@ -26,14 +24,33 @@ namespace Session.Controllers
             
             return View();
         }
+         public string randomPasscode(){
+            char[] chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".ToCharArray();
+            Random rand = new Random();
+            int randomNumber;
+            string passcode = "";
+            for(int i = 0; i<15; i++){
+                randomNumber = rand.Next(0, chars.Length -1);
+                passcode += chars[randomNumber];
+            }
+            return passcode;
+        }
+        
         [HttpGet("quote")]
         public IActionResult CreateQuote(){
             return View();
         }
         [HttpPost("quote/Create")]
-        public void Create(Quotes quote){
+        public IActionResult Create(Quotes quote){
             System.Console.WriteLine("Hi!!!!");
             System.Console.WriteLine("name is: "+quote.name);
+            if(ModelState.IsValid){
+                return RedirectToAction("test", quote);
+            }
+            else{
+                return View("CreateQuote");
+            }
+
             
         }
         [HttpGet("test")]
@@ -46,16 +63,10 @@ namespace Session.Controllers
             return View("test");
         }
         
-        public string randomPasscode(){
-            char[] chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".ToCharArray();
-            Random rand = new Random();
-            int randomNumber;
-            string passcode = "";
-            for(int i = 0; i<15; i++){
-                randomNumber = rand.Next(0, chars.Length -1);
-                passcode += chars[randomNumber];
-            }
-            return passcode;
-        }
+        
     }
 }
+//HttpContext.Session.SetInt32("Count", 0);
+        // GET: /Home/
+  
+       
