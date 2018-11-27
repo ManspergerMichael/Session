@@ -1,0 +1,10 @@
+@model Quotes
+<form asp-action="Create" asp-controller="Home" method="post">
+    <span asp-validation-for="name"></span>
+    <label asp-for="name"></label>
+    <input asp-for="name"><br>
+    <span asp-validation-for="quote"></span>
+    <label asp-for="quote"></label>
+    <input asp-for="quote"><br>
+    <input value="Add Quote" type="submit">
+</form>
