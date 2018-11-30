@@ -44,14 +44,7 @@ namespace Session.Controllers
         public IActionResult Create(Quotes quote){
             System.Console.WriteLine("Hi!!!!");
             System.Console.WriteLine("name is: "+quote.name);
-            if(ModelState.IsValid){
-                return RedirectToAction("test", quote);
-            }
-            else{
-                return View("CreateQuote");
-            }
-
-            
+            return RedirectToAction("test",quote);
         }
         [HttpGet("test")]
         public IActionResult test(Quotes obj){

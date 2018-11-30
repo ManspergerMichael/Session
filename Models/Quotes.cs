@@ -4,7 +4,8 @@ namespace Session.Models
 {
     public class Quotes
     {
-        //[Required]
+        [Required]
+        [MinLength(5)]
         [Display(Name = "Your Name:")]
         public string name {get;set;}
         //[Required]

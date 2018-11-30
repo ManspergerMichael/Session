@@ -1,5 +1,5 @@
-
-@model Session.Models.Quotes
+@using Session.Models
+@model Quotes
 <form asp-action="Create" asp-controller="Home" method="post">
     <span asp-validation-for="name"></span>
     <label asp-for="name"></label>
